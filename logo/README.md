@@ -38,12 +38,14 @@ In the animation, the clock holds at two o'clock (when 2), whirls through twelve
 
 ## Mark
 
-The clock alone: the WTFPL's double ring with a clock at two o'clock inside. Black for light backgrounds, white for dark ones.
+The clock alone: the WTFPL's double ring with a clock at two o'clock inside. Black for light backgrounds, white for dark ones, and an accent version with the hands in SNVRKOTICS orange, #ff4d00.
 
 | | Files |
 |---|---|
 | <img src="w2fpl-mark.png" width="120" alt="W2FPL mark"> | Black: [SVG](w2fpl-mark.svg) · [PNG](w2fpl-mark.png) · [animated GIF](w2fpl-mark-black.gif) · [animated GIF @2x](w2fpl-mark-black@2x.gif) |
 | <img src="w2fpl-mark-black.gif" width="120" alt="W2FPL mark, animated"> | White: [SVG](w2fpl-mark-white.svg) · [PNG](w2fpl-mark-white.png) · [animated GIF](w2fpl-mark-white.gif) · [animated GIF @2x](w2fpl-mark-white@2x.gif) |
+| <img src="w2fpl-mark-orange.gif" width="120" alt="W2FPL mark with orange hands, animated"> | Orange hands (#ff4d00), black ring: [SVG](w2fpl-mark-orange.svg) · [PNG](w2fpl-mark-orange.png) · [animated GIF](w2fpl-mark-orange.gif) · [animated GIF @2x](w2fpl-mark-orange@2x.gif) |
+| | Orange hands, white ring (for dark pages): [SVG](w2fpl-mark-white-orange.svg) · [PNG](w2fpl-mark-white-orange.png) · [animated GIF](w2fpl-mark-white-orange.gif) · [animated GIF @2x](w2fpl-mark-white-orange@2x.gif) |
 
 The animated marks have a transparent background. GIF transparency is all or nothing, so their soft edges are blended for the background each is meant for: the black mark for white or light pages, the white mark for black or dark ones.
 

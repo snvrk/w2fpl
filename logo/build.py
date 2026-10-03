@@ -8,6 +8,7 @@ Like Creative Commons' buttons, the mark comes in a family of sizes:
   w2fpl-icon.svg / w2fpl-icon-{32..256}.png        the clock alone, square
   w2fpl-mark{,-white}.svg / .png                   the clock mark alone, black or white
   w2fpl-mark-{black,white}{,@2x}.gif               the mark animated, transparent ground
+  w2fpl-mark-{orange,white-orange}.*               the mark with its hands in #ff4d00
   w2fpl-{445x160,890x320,88x31}.gif                animated: the clock whirls
                                                    through twelve hours and
                                                    lands back on two o'clock
@@ -158,16 +159,17 @@ RING = re.search(r'<path fill="#000" d="([^"]+)"', MARK).group(1)
 MP, MHUB, MW = (147.47, 122.00), 22, 32
 MMIN, MHOUR = 47.0, math.hypot(187.31 - 147.47, 99.00 - 122.00)
 
-def mark(t=120.0, colour="#000"):
+def mark(t=120.0, colour="#000", hands=None):
+    hands = hands or colour
     m_ang = (t % 60) / 60 * 360; h_ang = (t % 720) / 720 * 360
     def tip(a, L):
         r = math.radians(a); return MP[0] + L * math.sin(r), MP[1] - L * math.cos(r)
     (mx, my), (hx, hy) = tip(m_ang, MMIN), tip(h_ang, MHOUR)
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 215" width="297" height="215" role="img" aria-label="W2FPL">'
             f'<path fill="{colour}" d="{RING}"/>'
-            f'<g stroke="{colour}" stroke-width="{MW}" stroke-linecap="round" fill="none">'
+            f'<g stroke="{hands}" stroke-width="{MW}" stroke-linecap="round" fill="none">'
             f'<line x1="{MP[0]}" y1="{MP[1]}" x2="{hx:.2f}" y2="{hy:.2f}"/><line x1="{MP[0]}" y1="{MP[1]}" x2="{mx:.2f}" y2="{my:.2f}"/></g>'
-            f'<circle cx="{MP[0]}" cy="{MP[1]}" r="{MHUB}" fill="{colour}"/></svg>')
+            f'<circle cx="{MP[0]}" cy="{MP[1]}" r="{MHUB}" fill="{hands}"/></svg>')
 
 def gif_transparent(make_svg, w, h, path, colour, matte, frames=44, hold_ms=1600, step_ms=34):
     """A one-colour mark on a transparent ground. GIF transparency is all-or-nothing, so edge
@@ -194,4 +196,36 @@ png(mark(colour="#fff"), 594, 430, OUT / "w2fpl-mark-white.png")
 for name, colour, matte in (("black", "#000000", "#ffffff"), ("white", "#ffffff", "#000000")):
     gif_transparent(lambda t, c=colour: mark(t, c), 297, 215, OUT / f"w2fpl-mark-{name}.gif", colour, matte)
     gif_transparent(lambda t, c=colour: mark(t, c), 594, 430, OUT / f"w2fpl-mark-{name}@2x.gif", colour, matte)
+# ---- accent: the hands in SNVRKOTICS orange --------------------------------------------
+ORANGE = "#ff4d00"
+
+def gif_two_tone(make_svg, w, h, path, matte, frames=44, hold_ms=1600, step_ms=34):
+    """Like gif_transparent, for a mark in more than one colour: each frame is blended onto
+    `matte`, quantized to one shared palette, and fully transparent pixels get their own index."""
+    m = np.array([int(matte[i:i + 2], 16) for i in (1, 3, 5)], float)
+    comps, alphas, dur = [], [], []
+    for i in range(frames):
+        t = 120 + 720 * ease(i / frames)
+        buf = io.BytesIO()
+        cairosvg.svg2png(bytestring=make_svg(t).encode(), write_to=buf, output_width=w, output_height=h)
+        rgba = np.array(Image.open(buf).convert("RGBA")).astype(float)
+        a = rgba[:, :, 3:] / 255
+        comps.append(Image.fromarray((rgba[:, :, :3] * a + m * (1 - a)).round().astype(np.uint8), "RGB"))
+        alphas.append(a[:, :, 0]); dur.append(hold_ms if i == 0 else step_ms)
+    strip = Image.new("RGB", (w, h * 2)); strip.paste(comps[0], (0, 0)); strip.paste(comps[frames // 2], (0, h))
+    pal = strip.quantize(colors=63, method=Image.Quantize.MEDIANCUT)
+    out = []
+    for c, a in zip(comps, alphas):
+        q = np.array(c.quantize(palette=pal, dither=Image.Dither.NONE)); q[a < 0.06] = 63
+        im = Image.fromarray(q.astype(np.uint8), "P"); pl = pal.getpalette()[:63 * 3] + [0, 0, 0]
+        im.putpalette(pl + [0] * (768 - len(pl))); out.append(im)
+    out[0].save(path, save_all=True, append_images=out[1:], duration=dur, loop=0, transparency=63, disposal=2, optimize=False)
+
+write("w2fpl-mark-orange.svg", mark(hands=ORANGE))
+write("w2fpl-mark-white-orange.svg", mark(colour="#fff", hands=ORANGE))
+png(mark(hands=ORANGE), 594, 430, OUT / "w2fpl-mark-orange.png")
+png(mark(colour="#fff", hands=ORANGE), 594, 430, OUT / "w2fpl-mark-white-orange.png")
+for name, ring, matte in (("orange", "#000", "#ffffff"), ("white-orange", "#fff", "#000000")):
+    gif_two_tone(lambda t, r=ring: mark(t, r, ORANGE), 297, 215, OUT / f"w2fpl-mark-{name}.gif", matte)
+    gif_two_tone(lambda t, r=ring: mark(t, r, ORANGE), 594, 430, OUT / f"w2fpl-mark-{name}@2x.gif", matte)
 print("built", len(list(OUT.glob("w2fpl*"))), "files in", OUT)
