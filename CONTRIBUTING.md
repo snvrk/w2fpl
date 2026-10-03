@@ -26,7 +26,8 @@ Proposals are judged on whether they:
 
 ## Versions
 
-A published version is never edited. Accepted changes are collected into the next
+A published version is never edited: the steward commits to that, and to
+versioning every change. Accepted changes are collected into the next
 version, which gets a new number, a new date and its own file in [`versions/`](versions/),
 and is published at its own URL. Anyone who used an earlier version keeps it.
 
