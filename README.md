@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="w2fpl-logo.svg" width="180" alt="W2FPL">
+  <img src="logo/w2fpl-445x160.gif" width="445" alt="W2FPL">
 </p>
 
 <h1 align="center">W2FPL</h1>
@@ -35,10 +35,10 @@ https://snvrkotics.com/licenses/w2fpl ([plain text](https://snvrkotics.com/licen
    SPDX-License-Identifier: LicenseRef-W2FPL-1.0
    ```
 
-3. Badge, if you like:
+3. Badge, if you like. It comes in several sizes, like Creative Commons' buttons; all of them, with their embed codes, are in [`logo/`](logo/):
 
    ```html
-   <a href="https://snvrkotics.com/licenses/w2fpl" rel="license"><img src="https://snvrkotics.com/brand/licenses/w2fpl-badge.png" alt="W2FPL" width="88" height="31"></a>
+   <a href="https://snvrkotics.com/licenses/w2fpl" rel="license"><img src="https://snvrkotics.com/brand/licenses/w2fpl/w2fpl-88x31.png" srcset="https://snvrkotics.com/brand/licenses/w2fpl/w2fpl-88x31@2x.png 2x" alt="W2FPL" width="88" height="31"></a>
    ```
 
 ### One line
