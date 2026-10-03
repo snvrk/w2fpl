@@ -1,0 +1,29 @@
+name: Something's wrong with the wording
+description: A hole, an ambiguity, or a reason a lawyer would get nervous.
+title: "Problem: "
+labels: ["wording"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong
+      description: Quote the clause and say how it could be misread or what it fails to cover.
+    validations:
+      required: true
+  - type: textarea
+    id: fix
+    attributes:
+      label: Proposed fix (optional)
+      render: text
+  - type: input
+    id: credit
+    attributes:
+      label: Credit me as
+      description: The name (and link) to list you under if this lands.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: The fine print
+      options:
+        - label: What I contribute is released under the W2FPL, and I can be credited by the name above.
+          required: true

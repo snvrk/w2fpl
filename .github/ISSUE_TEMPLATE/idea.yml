@@ -1,0 +1,30 @@
+name: Propose a fucking idea
+description: An idea, a better joke, or something the license should say.
+title: "Idea: "
+labels: ["proposal"]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What should change, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: wording
+    attributes:
+      label: Suggested wording (optional)
+      description: If you have exact text in mind, put it here.
+      render: text
+  - type: input
+    id: credit
+    attributes:
+      label: Credit me as
+      description: The name (and link) to list you under if this lands. Leave empty to use your GitHub name.
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: The fine print
+      options:
+        - label: What I contribute is released under the W2FPL, and I can be credited by the name above.
+          required: true
