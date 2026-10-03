@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Do What You Want, Permanently: The W2FPL</title>
+<meta name="author" content="Caleb Gottfried">
+<style>
+  @page { size: Letter; margin: 1in 1in 1in 1in; @bottom-center { content: counter(page); } }
+  html { font-family: "Liberation Serif", "Times New Roman", Times, serif; font-size: 11pt; line-height: 1.45; color: #111; }
+  body { margin: 0; }
+  h1 { font-size: 17pt; line-height: 1.25; text-align: center; margin: 0 0 6pt; font-weight: bold; }
+  .subtitle { text-align: center; font-size: 12.5pt; font-style: italic; margin: 0 0 14pt; }
+  .author { text-align: center; margin: 0; font-size: 11.5pt; }
+  .affil { text-align: center; margin: 2pt 0 0; font-size: 10pt; }
+  .meta { text-align: center; margin: 10pt 0 0; font-size: 9.5pt; color: #333; }
+  .abstract { margin: 18pt 0.4in 6pt; font-size: 10pt; text-align: justify; }
+  .abstract h2 { font-size: 10.5pt; text-align: center; margin: 0 0 4pt; text-transform: uppercase; letter-spacing: 0.06em; }
+  .kw { margin: 6pt 0.4in 0; font-size: 9.5pt; }
+  h2 { font-size: 12pt; margin: 16pt 0 6pt; break-after: avoid; }
+  h3 { font-size: 11pt; font-style: italic; font-weight: normal; margin: 12pt 0 4pt; break-after: avoid; }
+  p { margin: 0 0 7pt; text-align: justify; hyphens: auto; }
+  pre.license { font-family: "Liberation Mono", "Courier New", monospace; font-size: 7.6pt; line-height: 1.18; border: 0.6pt solid #888; padding: 6pt 10pt; margin: 8pt 0 4pt; white-space: pre; break-inside: avoid; }
+  figure { margin: 10pt 0; break-inside: avoid; }
+  figcaption { font-size: 9.5pt; text-align: center; margin-top: 4pt; }
+  table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 8pt 0 4pt; break-inside: avoid; }
+  th, td { border-top: 0.5pt solid #999; border-bottom: 0.5pt solid #999; padding: 3.5pt 4pt; text-align: left; vertical-align: top; }
+  thead th { border-top: 1pt solid #111; border-bottom: 1pt solid #111; }
+  tbody tr:last-child td { border-bottom: 1pt solid #111; }
+  .note { font-size: 9.5pt; }
+  ol.refs { font-size: 9.5pt; padding-left: 18pt; }
+  ol.refs li { margin-bottom: 3pt; text-align: left; }
+  code { font-family: "Liberation Mono", "Courier New", monospace; font-size: 9.2pt; }
+  .fn { font-size: 9pt; }
+  .center { text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>Do What You Want, Permanently</h1>
+<p class="subtitle">The W2FPL, a WTFPL Derivative with an Explicit Irrevocable Grant and a Warranty Disclaimer</p>
+<p class="author">Caleb Gottfried</p>
+<p class="affil">SNVRKOTICS LLC · snvrk@snvrkotics.com</p>
+<p class="meta">Version 1.0 · October 2026 · Released under the W2FPL, version 1</p>
+
+<div class="abstract">
+  <h2>Abstract</h2>
+  <p>The WTFPL (“Do What The Fuck You Want To Public License”) is among the shortest free licenses in use: a single operative sentence granting unlimited permission. The Free Software Foundation lists it as free and GPL-compatible, and it carries an SPDX identifier. Two practical gaps limit its use. It never states the scope, duration or revocability of the permission it grants, and it contains no disclaimer of warranty or liability, an omission that some institutions cite when restricting contributions to projects under it. This paper presents the W2FPL (“Do What The Fuck You Want To, When You Want To Public License”), version 1, a renamed derivative of the WTFPL, version 2, that closes both gaps while keeping the original’s one-sentence grant and its voice. Clause 1 states the grant as free, worldwide, permanent and irrevocable, the same terms used by the fallback license of CC0 1.0. Clause 4 disclaims warranty and liability. Two humorous clauses are drafted so that neither binds the licensee: the second cancels the first, a structure chosen to avoid the interpretive problem created by the JSON License’s “Good, not Evil” clause. The paper analyzes each clause, compares the license with six permissive alternatives, describes its governance (frozen versions, public development and a coauthorship model), reports its first deployment as the data license of two public datasets, and sets out its limitations. The license has not yet been reviewed by the FSF, the OSI or SPDX; a request for SPDX listing is pending.</p>
+</div>
+<p class="kw"><b>Keywords:</b> open source licensing; permissive licenses; WTFPL; public domain dedication; CC0; warranty disclaimer; open data; SPDX; license proliferation</p>
+<p class="kw"><b>JEL classification:</b> K11, O34, L17, L86</p>
+
+<h2>1. Introduction</h2>
+<p>Permissive licenses differ less in what they allow than in how carefully they say it. At one end sit drafted instruments such as CC0 1.0, which combines a public domain dedication with a fallback license and a set of disclaimers [3, 4]. At the other sits the WTFPL, whose operative text is one sentence: “You just DO WHAT THE FUCK YOU WANT TO” [1]. Its brevity is the point, and it has made the license a durable choice for authors who want to impose no conditions at all.</p>
+<p>Brevity has costs. A grant that does not say where it applies, how long it lasts or whether it can be withdrawn leaves those questions to whatever law a court applies to it. A license without a warranty disclaimer offers its authors no contractual statement limiting their exposure, and some organizations restrict their staff from contributing to projects licensed that way [11]. These are not objections to the WTFPL’s freedom. They are objections to its silence.</p>
+<p>This paper describes the W2FPL, version 1, a derivative written to keep the WTFPL’s grant, length and tone while stating what the original leaves unsaid. Section 2 reviews the background. Section 3 presents the license and analyzes it clause by clause. Section 4 compares it with six alternatives. Section 5 describes its governance and its submission to the SPDX License List. Section 6 reports its first deployment. Section 7 sets out limitations and open questions, and Section 8 concludes.</p>
+<p class="note"><i>Disclosure.</i> The author wrote the W2FPL and is its steward. SNVRKOTICS LLC, the author’s company, uses it for two datasets (Section 6). This paper describes the license; it is not legal advice.</p>
+
+<h2>2. Background</h2>
+<h3>2.1 Licenses, dedications and fallbacks</h3>
+<p>A free license grants permission while the licensor keeps the copyright. A public domain dedication instead attempts to give the copyright up. The distinction matters because not every legal system allows the second. Under German law, for example, copyright cannot be transferred except by inheritance, although rights of use can be granted (Urheberrechtsgesetz §29) [9], and the Berne Convention recognizes moral rights of attribution and integrity that many member states treat as inalienable (Art. 6<i>bis</i>) [8]. CC0 1.0 responds to this by pairing its waiver with a fallback: where the waiver fails, the affirmer grants a “royalty-free, non transferable, non sublicensable, non exclusive, irrevocable and unconditional license” to exercise the waived rights “in all territories worldwide” and “for the maximum duration provided by applicable law” [4, §3]. The Unlicense takes a similar dedication-first approach [5].</p>
+<p>A bare permission raises a different question: whether it can be revoked. Commentators have long noted that a nonexclusive license unsupported by consideration may, in some jurisdictions, be treated as revocable at the licensor’s will, and that the characterization of open source licenses as licenses or contracts affects remedies [12]. Licenses that state their grant as irrevocable remove that question from the text, whatever the background law.</p>
+
+<h3>2.2 The WTFPL</h3>
+<p>The WTFPL was first published in 2000 by Banlu Kemiyatorn; version 2, the current one, was published by Sam Hocevar in 2004 [1]. Its preamble permits anyone to copy and distribute it and to change it, “as long as the name is changed.” The FSF lists it as a free software license compatible with the GNU GPL [2]. The OSI has not approved it. SPDX lists it as <code>WTFPL</code> [6].</p>
+<p>Two features of the text are relevant here. First, it is a license, not a dedication: it grants permission (“you just do what … you want to”) and claims no relinquishment of copyright, so the civil-law difficulty that CC0’s fallback addresses for waivers does not arise in the same form. Second, it says nothing else: no scope, no duration, no statement of irrevocability, and no disclaimer. Organizations with conservative contribution policies have been reported to treat licenses of this kind as unacceptable for staff contributions, citing the absence of a warranty disclaimer [11].</p>
+
+<h3>2.3 Humor and interpretive risk</h3>
+<p>License humor is not new, and it is not always harmless. The JSON License adds to an otherwise MIT-style grant the condition that “the Software shall be used for Good, not Evil” [7]. Because the clause reads as a field-of-use restriction, the FSF lists the JSON License as nonfree [2], and the Debian project likewise does not treat it as free [10]. The lesson for a humorous license is narrow but firm: a joke must not be capable of being read as a condition. The WTFPL avoids the problem by having no clause beyond the grant. The W2FPL, which adds humorous clauses, has to avoid it by construction (Section 3).</p>
+
+<h3>2.4 Standards for openness</h3>
+<p>Four definitions are commonly used to judge whether a license is open: the Open Source Definition [13], the Free Software Definition [14], the Open Definition, which governs open data and content [15], and the Definition of Free Cultural Works [16]. A license that grants every freedom without conditions satisfies all four. The SPDX License List applies its own inclusion principles, which give weight to compliance with these definitions, to stable and versioned text, and to actual use [6].</p>
+
+<h2>3. The W2FPL</h2>
+<p>The full text of version 1 is reproduced in Figure 1. It is published at a permanent URL in HTML and plain text, and the steward has committed never to modify it; any change is to be published as a new, separately numbered version [17].</p>
+
+<figure>
+<pre class="license">             DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO
+                             PUBLIC LICENSE
+
+                        Version 1, October 2026
+
+       Copyright (C) 2026 Caleb Gottfried &lt;snvrk@snvrkotics.com&gt;
+                        and the W2FPL coauthors
+
+        Everyone is permitted to copy and distribute verbatim or
+      modified copies of this license document, and changing it is
+                allowed as long as the name is changed.
+
+             DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO
+                             PUBLIC LICENSE
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. You just DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO.
+
+  1. If the law where you are won't let the author give this up, the
+     law can go fuck itself, and whether or not it ever does, the
+     author gives you a free, worldwide, permanent, irrevocable license
+     to do everything it allows, whenever the fuck you want to.
+
+  2. Know the right times to fuck, and fuck hard.
+
+  3. Ignore what the fuck I just said in step 2 because you have free
+     fucking will.
+
+  4. This work comes as is, with no warranty of any fucking kind, and
+     the author isn't liable for whatever the fuck happens when you use
+     it.</pre>
+<figcaption>Figure 1. The W2FPL, version 1, verbatim.</figcaption>
+</figure>
+
+<h3>3.1 Name and preamble</h3>
+<p>The WTFPL’s preamble permits modification only under a new name. The W2FPL complies: it does not call itself a WTFPL version and does not use the WTFPL’s name or badge. Its own preamble repeats the rule, so derivatives of the W2FPL must also be renamed and cannot be confused with it. The short name, W2FPL, is read “when 2 fuck,” a contraction of the added phrase.</p>
+
+<h3>3.2 Clause 0: the grant</h3>
+<p>Clause 0 is the WTFPL’s grant with the phrase “when you want to” appended. The addition has no operative effect: the WTFPL’s grant is already unlimited in time. It marks the license as distinct and supplies the theme the later clauses return to. As in the WTFPL, clause 0 is the operative grant.</p>
+
+<h3>3.3 Clause 1: an explicit, irrevocable grant</h3>
+<p>Clause 1 states the grant in terms the WTFPL omits: “a free, worldwide, permanent, irrevocable license to do everything [the law] allows.” The four adjectives carry the legal content; the profanity around them does not. They track the fallback license of CC0 1.0, which is irrevocable and applies “in all territories worldwide” “for the maximum duration provided by applicable law” [4, §3], so the clause speaks to the bare-license revocability concern described in Section 2.1 and fixes the grant’s territorial and temporal scope in the text. The clause is framed as operative “where the law won’t let the author give this up,” and the phrase “whether or not it ever does” prevents the grant from being read as lasting only until the law changes. Section 7 discusses an open question about when the clause’s condition is met.</p>
+
+<h3>3.4 Clauses 2 and 3: humor that cannot bind</h3>
+<p>Clause 2 is a joke. Read alone, it is phrased as an instruction, which is exactly the shape that made the JSON License’s clause a problem. Clause 3 removes the risk by directing the reader to ignore clause 2 “because you have free … will.” The pair is constructed so that, read together, nothing after clause 1 is a requirement: compliance with clause 2 is never a condition of using the work, and clause 3 imposes no obligation of its own. The design keeps the humor while preserving the property the openness definitions require: no conditions on use, modification or redistribution.</p>
+
+<h3>3.5 Clause 4: warranty and liability disclaimer</h3>
+<p>Clause 4 provides that the work “comes as is, with no warranty of any … kind,” and that “the author isn’t liable for whatever … happens when you use it.” It serves the same function as the capitalized disclaimers in the MIT and BSD families, and it addresses the institutional objection described in Section 2.2. Like any disclaimer, its effect depends on applicable law, including consumer-protection rules that limit disclaimers in some jurisdictions.</p>
+
+<h3>3.6 The credit line</h3>
+<p>The copyright line credits the license text to its author “and the W2FPL coauthors,” the people whose proposals are incorporated into later versions (Section 5). It is the copyright notice of the license document itself, not of the works licensed under it; licensors are directed to keep the license verbatim and state their own copyright separately [17].</p>
+
+<h2>4. Comparison</h2>
+<p>Table 1 compares the W2FPL with six permissive instruments on the two dimensions it changes, plus mechanism and conditions. Entries describe the texts as written; they are not assessments of how any court would apply them.</p>
+
+<table>
+  <thead>
+    <tr><th>Instrument</th><th>Mechanism</th><th>Grant stated as irrevocable</th><th>Warranty / liability disclaimer</th><th>Conditions on licensee</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>WTFPL 2.0 [1]</td><td>License</td><td>No</td><td>None</td><td>None</td></tr>
+    <tr><td>WTFNMFPL 1.0</td><td>License</td><td>No</td><td>Liability only</td><td>None</td></tr>
+    <tr><td>CC0 1.0 [4]</td><td>Waiver, with fallback license</td><td>Yes (fallback)</td><td>Warranty</td><td>None</td></tr>
+    <tr><td>Unlicense [5]</td><td>Dedication, with permission grant</td><td>Relinquished “in perpetuity”</td><td>Both</td><td>None</td></tr>
+    <tr><td>0BSD [6]</td><td>License</td><td>No</td><td>Both</td><td>None</td></tr>
+    <tr><td>MIT-0 [6]</td><td>License</td><td>No</td><td>Both</td><td>None</td></tr>
+    <tr><td><b>W2FPL 1.0</b></td><td>License</td><td><b>Yes (clause 1)</b></td><td><b>Both (clause 4)</b></td><td>None (clauses 2–3 non-binding)</td></tr>
+  </tbody>
+</table>
+<p class="center note">Table 1. The W2FPL and six permissive alternatives.</p>
+
+<p>Two observations follow. First, the W2FPL is the only instrument in the table that is a pure license, states its grant as irrevocable and disclaims both warranty and liability; CC0 reaches irrevocability through its fallback, and the 0BSD and MIT-0 licenses disclaim but do not address revocability. Second, the W2FPL differs from its nearest relatives in substance rather than wording: it adds clause 1, which neither the WTFPL nor the WTFNMFPL contains, and clause 4, which the WTFPL lacks and the WTFNMFPL only partly provides. That distinction matters for the SPDX matching guidelines, under which a license whose differences are cosmetic would be matched to an existing entry [6].</p>
+<p>The comparison also shows what the W2FPL does not do. Like the WTFPL, 0BSD and MIT-0, it contains no express patent license, and it offers no public domain dedication. Authors who need either should choose a different instrument.</p>
+
+<h2>5. Governance</h2>
+<p>Three commitments structure the license’s maintenance. <i>Frozen versions:</i> version 1 will not be modified; changes are collected into a new version with its own number, date and URL, so no licensee’s terms change under them. <i>Public development:</i> the license is maintained in a public repository, where anyone may propose changes through issues or pull requests [17]. <i>Coauthorship:</i> contributors whose proposals are incorporated into a published version become W2FPL coauthors, recorded in the repository and on the license’s website and covered by the credit line. Contributions are themselves released under the W2FPL, so they can be incorporated without further permission.</p>
+<p>A request to add the license to the SPDX License List as <code>W2FPL-1.0</code> was filed in October 2026 [18], with draft license-list XML and test text prepared in advance [17]. The request addresses SPDX’s definitive factors (no match with an existing entry; stable, versioned text; a steward commitment against modification) and its weighed factors (compliance with the openness definitions, general usability, actual use).</p>
+
+<h2>6. Deployment</h2>
+<p>The license’s first uses are two public datasets published by SNVRKOTICS LLC: SNVRKOTICS Data, a music metadata graph distributed as per-entity JSON in Wikidata’s format and as a full newline-delimited dump, and dripgraph, a linked-data archive distributed as JSON-LD [19, 20]. Both moved to the W2FPL from the WTFPL, version 2, in October 2026.</p>
+<p>The deployment illustrates how a license choice can be expressed for machine readers. Each dataset declares the license in four places: the <code>license</code> property of its schema.org Dataset, WebSite and page nodes; a <code>rel="license"</code> link on every page; an HTTP <code>Link: rel="license"</code> header on every JSON response and dump; and a license page carrying the text verbatim with the license’s badge. Because a free license cannot be withdrawn from those who have already received the work, both license pages state that copies obtained before the change remain under the WTFPL, version 2. For dripgraph, the license page also states that photographs, which belong to third parties, are not covered.</p>
+
+<h2>7. Limitations and open questions</h2>
+<p><i>No external review yet.</i> The W2FPL has not been evaluated by the FSF, the OSI, Debian, Fedora or SPDX, and no court has construed it. The analysis in this paper is the author’s.</p>
+<p><i>When clause 1 applies.</i> Clause 1 is framed as applying where “the law … won’t let the author give this up.” Because clause 0 operates as a license rather than a waiver, a reader could argue that the condition is rarely met and that clause 1 is therefore seldom triggered. On the better reading, the clause states the scope and irrevocability of the grant regardless, and “whether or not it ever does” supports that reading; but the text could be more direct, and a future version could state the grant’s irrevocability unconditionally.</p>
+<p><i>“The author.”</i> Clauses 1 and 4 refer to “the author,” following the WTFPL. For works with several authors, or works licensed by someone other than the author, the clauses are best read as referring to the licensor, but the text does not say so.</p>
+<p><i>Humor as an adoption barrier.</i> Even if clauses 2 and 3 are legally inert, some organizations may decline a license with profane or sexual content on policy grounds, and clause 2 may give a cautious reviewer pause before clause 3 is read. The design accepts this cost as part of the license’s identity.</p>
+<p><i>Disclaimers vary by jurisdiction.</i> Clause 4’s effect, like that of any disclaimer, depends on local law.</p>
+<p><i>Adoption.</i> At the time of writing the license’s uses are the author’s own. Whether it sees wider use is an empirical question this paper cannot answer.</p>
+
+<h2>8. Conclusion</h2>
+<p>The WTFPL shows that a license can be one sentence long and still be free in every sense the major definitions recognize. The W2FPL keeps that sentence and adds the two statements its users most often need: that the permission is worldwide, permanent and irrevocable, and that the author offers no warranty and accepts no liability. Its humorous clauses are built so that they cannot become conditions, which is the failure that made the JSON License nonfree. It is maintained as frozen, numbered versions, developed in public, and open to coauthors. Whether these choices make it more useful than its parent is for its users, and for the bodies now reviewing it, to judge.</p>
+
+<h2>Data and text availability</h2>
+<p class="note">License text: https://snvrkotics.com/licenses/w2fpl (HTML) and https://snvrkotics.com/licenses/w2fpl.txt (plain text). Repository, including SPDX drafts and this paper’s source: https://github.com/snvrk/w2fpl.</p>
+
+<h2>Acknowledgments</h2>
+<p class="note">The W2FPL is a derivative of the WTFPL, version 2, by Sam Hocevar, itself a revision of the original by Banlu Kemiyatorn. Drafting of the license and of this paper was assisted by an AI writing tool; the author reviewed the result and is responsible for its content. No external funding was received.</p>
+
+<h2>References</h2>
+<ol class="refs">
+  <li>Hocevar, S. <i>DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE, Version 2</i> (2004), and the license’s history at http://www.wtfpl.net/.</li>
+  <li>Free Software Foundation. “Various Licenses and Comments about Them.” https://www.gnu.org/licenses/license-list.html.</li>
+  <li>Creative Commons. <i>CC0 1.0 Universal</i> (deed). https://creativecommons.org/publicdomain/zero/1.0/.</li>
+  <li>Creative Commons. <i>CC0 1.0 Universal: Legal Code.</i> https://creativecommons.org/publicdomain/zero/1.0/legalcode.</li>
+  <li><i>The Unlicense.</i> https://unlicense.org/.</li>
+  <li>SPDX Workgroup. <i>SPDX License List</i>, https://spdx.org/licenses/; <i>License Inclusion Principles</i> (2023), https://github.com/spdx/license-list-XML; <i>License Matching Guidelines and Templates</i>, SPDX Specification 2.3.</li>
+  <li>Crockford, D. <i>The JSON License.</i> https://www.json.org/license.html.</li>
+  <li><i>Berne Convention for the Protection of Literary and Artistic Works</i>, Art. 6<i>bis</i> (Paris Act, 1971).</li>
+  <li><i>Gesetz über Urheberrecht und verwandte Schutzrechte</i> (Urheberrechtsgesetz), §29 (Germany).</li>
+  <li>Debian Project. <i>Debian Free Software Guidelines</i>, in the Debian Social Contract. https://www.debian.org/social_contract.</li>
+  <li>“WTFPL.” <i>Wikipedia</i>, on institutional restrictions on contributions to projects under the license (accessed October 2026). https://en.wikipedia.org/wiki/WTFPL.</li>
+  <li>Rosen, L. <i>Open Source Licensing: Software Freedom and Intellectual Property Law.</i> Prentice Hall, 2004.</li>
+  <li>Open Source Initiative. <i>The Open Source Definition.</i> https://opensource.org/osd.</li>
+  <li>Free Software Foundation. <i>What Is Free Software?</i> https://www.gnu.org/philosophy/free-sw.html.</li>
+  <li>Open Knowledge Foundation. <i>Open Definition 2.1.</i> https://opendefinition.org/od/2.1/en/.</li>
+  <li>Freedom Defined. <i>Definition of Free Cultural Works.</i> https://freedomdefined.org/Definition.</li>
+  <li>Gottfried, C. <i>The W2FPL, version 1</i>, and repository. https://snvrkotics.com/w2fpl; https://github.com/snvrk/w2fpl.</li>
+  <li>SPDX license-list-XML, issue #3091, “New license request: W2FPL-1.0.” https://github.com/spdx/license-list-XML/issues/3091.</li>
+  <li>SNVRKOTICS Data. https://data.snvrkotics.com; license: https://data.snvrkotics.com/license.</li>
+  <li>dripgraph. https://dripgraph.com; license: https://dripgraph.com/license.</li>
+</ol>
+
+</body>
+</html>
