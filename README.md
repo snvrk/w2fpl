@@ -41,6 +41,23 @@ https://snvrkotics.com/licenses/w2fpl ([plain text](https://snvrkotics.com/licen
    <a href="https://snvrkotics.com/licenses/w2fpl" rel="license"><img src="https://snvrkotics.com/brand/licenses/w2fpl-badge.png" alt="W2FPL" width="88" height="31"></a>
    ```
 
+### One line
+
+```sh
+curl -o LICENSE https://snvrkotics.com/licenses/w2fpl.txt
+```
+
+### Package managers
+
+Until SPDX lists it, use the `LicenseRef-` form, which every SPDX-aware tool accepts:
+
+| Ecosystem | Field |
+| --- | --- |
+| npm (`package.json`) | `"license": "LicenseRef-W2FPL-1.0"` |
+| Python (`pyproject.toml`) | `license = { file = "LICENSE" }` |
+| Rust (`Cargo.toml`) | `license-file = "LICENSE"` |
+| Hugging Face (dataset card) | `license: other`, `license_name: w2fpl-1.0`, `license_link: https://snvrkotics.com/licenses/w2fpl` |
+
 ## Propose a fucking idea
 
 The W2FPL is written in public. **Anyone can propose what goes into the next version,

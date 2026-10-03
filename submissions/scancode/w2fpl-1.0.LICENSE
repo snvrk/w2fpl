@@ -1,0 +1,49 @@
+---
+key: w2fpl-1.0
+short_name: W2FPL 1.0
+name: Do What The Fuck You Want To, When You Want To Public License 1.0
+category: Permissive
+owner: Caleb Gottfried
+homepage_url: https://snvrkotics.com/w2fpl
+notes: A derivative of the WTFPL 2.0, renamed as its terms require. Adds an explicit free, worldwide, permanent, irrevocable grant (clause 1) and a warranty and liability disclaimer (clause 4). Clauses 2 and 3 are non-binding; clause 3 cancels clause 2. Submitted to SPDX as W2FPL-1.0 (spdx/license-list-XML#3091).
+spdx_license_key: LicenseRef-scancode-w2fpl-1.0
+text_urls:
+    - https://snvrkotics.com/licenses/w2fpl.txt
+    - https://github.com/snvrk/w2fpl/blob/main/LICENSE
+other_urls:
+    - https://snvrkotics.com/licenses/w2fpl
+    - https://github.com/snvrk/w2fpl
+    - https://github.com/spdx/license-list-XML/issues/3091
+---
+             DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO
+                             PUBLIC LICENSE
+
+                        Version 1, October 2026
+
+       Copyright (C) 2026 Caleb Gottfried <snvrk@snvrkotics.com>
+                        and the W2FPL coauthors
+
+        Everyone is permitted to copy and distribute verbatim or
+      modified copies of this license document, and changing it is
+                allowed as long as the name is changed.
+
+             DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO
+                             PUBLIC LICENSE
+    TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. You just DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO.
+
+  1. If the law where you are won't let the author give this up, the
+     law can go fuck itself, and whether or not it ever does, the
+     author gives you a free, worldwide, permanent, irrevocable license
+     to do everything it allows, whenever the fuck you want to.
+
+  2. Know the right times to fuck, and fuck hard.
+
+  3. Ignore what the fuck I just said in step 2 because you have free
+     fucking will.
+
+  4. This work comes as is, with no warranty of any fucking kind, and
+     the author isn't liable for whatever the fuck happens when you use
+     it.
+
