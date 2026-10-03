@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SPDXLicenseCollection xmlns="http://www.spdx.org/license">
+  <license isOsiApproved="false" licenseId="W2FPL-1.0" name="DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO PUBLIC LICENSE, Version 1">
+    <crossRefs>
+      <crossRef>https://snvrkotics.com/licenses/w2fpl</crossRef>
+      <crossRef>https://snvrkotics.com/licenses/w2fpl.txt</crossRef>
+      <crossRef>https://github.com/snvrk/w2fpl/blob/main/LICENSE</crossRef>
+    </crossRefs>
+    <notes>A derivative of the WTFPL, version 2, renamed as its terms require. Adds an explicit free, worldwide, permanent, irrevocable grant (clause 1) and a warranty and liability disclaimer (clause 4). Clauses 2 and 3 are non-binding: clause 3 cancels clause 2.</notes>
+    <text>
+      <titleText>
+        <p>DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO PUBLIC LICENSE</p>
+        <p>Version 1, October 2026</p>
+      </titleText>
+      <copyrightText>
+        <p>Copyright (C) 2026 Caleb Gottfried &lt;snvrk@snvrkotics.com&gt; and the W2FPL coauthors</p>
+      </copyrightText>
+      <p>Everyone is permitted to copy and distribute verbatim or modified copies of this license document, and changing it is allowed as long as the name is changed.</p>
+      <titleText>
+        <p>DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO PUBLIC LICENSE</p>
+      </titleText>
+      <p>TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION</p>
+      <list>
+        <item>
+          <bullet>0.</bullet>
+          You just DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO.
+        </item>
+        <item>
+          <bullet>1.</bullet>
+          If the law where you are won't let the author give this up, the law can go fuck itself, and whether or not it ever does, the author gives you a free, worldwide, permanent, irrevocable license to do everything it allows, whenever the fuck you want to.
+        </item>
+        <item>
+          <bullet>2.</bullet>
+          Know the right times to fuck, and fuck hard.
+        </item>
+        <item>
+          <bullet>3.</bullet>
+          Ignore what the fuck I just said in step 2 because you have free fucking will.
+        </item>
+        <item>
+          <bullet>4.</bullet>
+          This work comes as is, with no warranty of any fucking kind, and the author isn't liable for whatever the fuck happens when you use it.
+        </item>
+      </list>
+    </text>
+  </license>
+</SPDXLicenseCollection>
