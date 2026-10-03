@@ -65,6 +65,17 @@ and if your proposal lands, you're a coauthor**: named in [`AUTHORS.md`](AUTHORS
 and on https://snvrkotics.com/w2fpl, and covered by the license's own credit line,
 "and the W2FPL coauthors". See [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
+## Paper
+
+Gottfried, C. (2026). *Do What You Want, Permanently: The W2FPL, a WTFPL Derivative
+with an Explicit Irrevocable Grant and a Warranty Disclaimer.* Zenodo.
+https://doi.org/10.5281/zenodo.23121447
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23121447.svg)](https://doi.org/10.5281/zenodo.23121447)
+
+The clause-by-clause analysis, a comparison with six other licenses, and the
+limitations. Source in [`paper/`](paper/).
+
 ## Versions
 
 | Version | Date | Text |

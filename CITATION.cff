@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you cite the W2FPL, please cite the paper below."
+title: "W2FPL: DO WHAT THE FUCK YOU WANT TO, WHEN YOU WANT TO PUBLIC LICENSE"
+version: "1"
+date-released: 2026-10-03
+url: "https://snvrkotics.com/w2fpl"
+repository-code: "https://github.com/snvrk/w2fpl"
+authors:
+  - family-names: Gottfried
+    given-names: Caleb
+    email: snvrk@snvrkotics.com
+    affiliation: SNVRKOTICS LLC
+preferred-citation:
+  type: article
+  title: "Do What You Want, Permanently: The W2FPL, a WTFPL Derivative with an Explicit Irrevocable Grant and a Warranty Disclaimer"
+  authors:
+    - family-names: Gottfried
+      given-names: Caleb
+      affiliation: SNVRKOTICS LLC
+  year: 2026
+  month: 10
+  publisher:
+    name: Zenodo
+  doi: 10.5281/zenodo.23121447
+  url: "https://doi.org/10.5281/zenodo.23121447"

@@ -1,5 +1,7 @@
 # Submitting the paper
 
+**Published on Zenodo:** https://doi.org/10.5281/zenodo.23121447
+
 File: `w2fpl-paper.pdf` (8 pages). Source: `w2fpl-paper.html`. Rebuild with:
 
 ```sh
