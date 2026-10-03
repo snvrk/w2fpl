@@ -36,6 +36,21 @@ In Markdown (a README, for example):
 
 In the animation, the clock holds at two o'clock (when 2), whirls through twelve hours, and lands back on two.
 
+## Mark
+
+The clock alone: the WTFPL's double ring with a clock at two o'clock inside. Black for light backgrounds, white for dark ones.
+
+| | Files |
+|---|---|
+| <img src="w2fpl-mark.png" width="120" alt="W2FPL mark"> | Black: [SVG](w2fpl-mark.svg) · [PNG](w2fpl-mark.png) · [animated GIF](w2fpl-mark-black.gif) · [animated GIF @2x](w2fpl-mark-black@2x.gif) |
+| <img src="w2fpl-mark-black.gif" width="120" alt="W2FPL mark, animated"> | White: [SVG](w2fpl-mark-white.svg) · [PNG](w2fpl-mark-white.png) · [animated GIF](w2fpl-mark-white.gif) · [animated GIF @2x](w2fpl-mark-white@2x.gif) |
+
+The animated marks have a transparent background. GIF transparency is all or nothing, so their soft edges are blended for the background each is meant for: the black mark for white or light pages, the white mark for black or dark ones.
+
+```html
+<a href="https://snvrkotics.com/licenses/w2fpl" rel="license"><img src="https://snvrkotics.com/brand/licenses/w2fpl/w2fpl-mark-black.gif" alt="W2FPL" width="149" height="108"></a>
+```
+
 ## Icon
 
 | | Files |

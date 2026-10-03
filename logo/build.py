@@ -6,6 +6,8 @@ Like Creative Commons' buttons, the mark comes in a family of sizes:
   w2fpl-88x31.{svg,png} (+ @2x)                    the classic web button
   w2fpl-80x15.{svg,png} (+ @2x)                    the compact button
   w2fpl-icon.svg / w2fpl-icon-{32..256}.png        the clock alone, square
+  w2fpl-mark{,-white}.svg / .png                   the clock mark alone, black or white
+  w2fpl-mark-{black,white}{,@2x}.gif               the mark animated, transparent ground
   w2fpl-{445x160,890x320,88x31}.gif                animated: the clock whirls
                                                    through twelve hours and
                                                    lands back on two o'clock
@@ -150,4 +152,46 @@ def gif(make_svg, w, h, path, frames=44, hold_ms=1600, step_ms=34):
 gif(full_logo, 445, 160, OUT / "w2fpl-445x160.gif")
 gif(full_logo, 890, 320, OUT / "w2fpl-890x320.gif")
 gif(lambda t: button(88, 31, t), 88, 31, OUT / "w2fpl-88x31.gif")
+# ---- the mark alone (logo/mark-source.svg): the double ring and a vector clock ----------
+MARK = (HERE / "mark-source.svg").read_text()
+RING = re.search(r'<path fill="#000" d="([^"]+)"', MARK).group(1)
+MP, MHUB, MW = (147.47, 122.00), 22, 32
+MMIN, MHOUR = 47.0, math.hypot(187.31 - 147.47, 99.00 - 122.00)
+
+def mark(t=120.0, colour="#000"):
+    m_ang = (t % 60) / 60 * 360; h_ang = (t % 720) / 720 * 360
+    def tip(a, L):
+        r = math.radians(a); return MP[0] + L * math.sin(r), MP[1] - L * math.cos(r)
+    (mx, my), (hx, hy) = tip(m_ang, MMIN), tip(h_ang, MHOUR)
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 297 215" width="297" height="215" role="img" aria-label="W2FPL">'
+            f'<path fill="{colour}" d="{RING}"/>'
+            f'<g stroke="{colour}" stroke-width="{MW}" stroke-linecap="round" fill="none">'
+            f'<line x1="{MP[0]}" y1="{MP[1]}" x2="{hx:.2f}" y2="{hy:.2f}"/><line x1="{MP[0]}" y1="{MP[1]}" x2="{mx:.2f}" y2="{my:.2f}"/></g>'
+            f'<circle cx="{MP[0]}" cy="{MP[1]}" r="{MHUB}" fill="{colour}"/></svg>')
+
+def gif_transparent(make_svg, w, h, path, colour, matte, frames=44, hold_ms=1600, step_ms=34):
+    """A one-colour mark on a transparent ground. GIF transparency is all-or-nothing, so edge
+    pixels are blended against the background the mark is meant for (`matte`)."""
+    rgb = tuple(int(colour[i:i + 2], 16) for i in (1, 3, 5)); mrgb = tuple(int(matte[i:i + 2], 16) for i in (1, 3, 5))
+    out, dur = [], []
+    for i in range(frames):
+        t = 120 + 720 * ease(i / frames)
+        buf = io.BytesIO()
+        cairosvg.svg2png(bytestring=make_svg(t).encode(), write_to=buf, output_width=w, output_height=h)
+        a = np.array(Image.open(buf).convert("RGBA"))[:, :, 3].astype(float) / 255
+        levels = np.clip(np.round(a * 15), 0, 15).astype(np.uint8)          # 0 = transparent, 1..15 = coverage
+        pal = [mrgb]                                                         # index 0 is the transparent colour
+        for k in range(1, 16):
+            f = k / 15; pal.append(tuple(round(rgb[c] * f + mrgb[c] * (1 - f)) for c in range(3)))
+        im = Image.fromarray(levels, "P"); im.putpalette([v for c in pal for v in c] + [0] * (768 - 48))
+        out.append(im); dur.append(hold_ms if i == 0 else step_ms)
+    out[0].save(path, save_all=True, append_images=out[1:], duration=dur, loop=0, transparency=0, disposal=2, optimize=False)
+
+write("w2fpl-mark.svg", mark())
+write("w2fpl-mark-white.svg", mark(colour="#fff"))
+png(mark(), 594, 430, OUT / "w2fpl-mark.png")
+png(mark(colour="#fff"), 594, 430, OUT / "w2fpl-mark-white.png")
+for name, colour, matte in (("black", "#000000", "#ffffff"), ("white", "#ffffff", "#000000")):
+    gif_transparent(lambda t, c=colour: mark(t, c), 297, 215, OUT / f"w2fpl-mark-{name}.gif", colour, matte)
+    gif_transparent(lambda t, c=colour: mark(t, c), 594, 430, OUT / f"w2fpl-mark-{name}@2x.gif", colour, matte)
 print("built", len(list(OUT.glob("w2fpl*"))), "files in", OUT)
